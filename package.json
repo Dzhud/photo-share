@@ -1,0 +1,17 @@
+{
+  "name": "photo-share",
+  "version": "1.0.0",
+  "description": "Phot-Sharing Application",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
