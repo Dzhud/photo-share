@@ -1,0 +1,29 @@
+//Variable
+<%= person.name %>
+
+//If Statement
+<% if (person) { %>
+    <h1><%= person.name %></h1>
+<% } %>
+
+//If-Else Statement
+<% if (person) { %>
+        <h1><%= person.name %></h1>
+    <%} else { %>
+        <h1>Hey Stranger</h1>
+<% } %>
+
+//Foreach Loops
+<ul>
+    <% post.forEach(function(post){ %>
+        <li><%= post.title %></li>
+    <% }); %>
+</ul>
+
+//Includes partials
+<%- include('partials/navbar'); %>
+<main>....</main>
+
+<!-- Pass data to the partial -->
+<%- include('partials/navbar', {user: user}); %>
+<main>....</main>
