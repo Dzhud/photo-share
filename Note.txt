@@ -1,0 +1,5 @@
+Node.js, MariaDB-powered Photosharing App
+Username: Jude
+passy: morrky
+
+Next, I need to deploy this app and drop its current data (check server.js for '.sync({})'. it's hw to drop db inputs before deploymnt)

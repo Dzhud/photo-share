@@ -3,7 +3,7 @@ const express = require("express");
 const db = require("./models"); //this line
 const app = express();
 const bodyParser = require("body-parser");
-app.use(bodyParser.json());
+const logger = require("morgan");
 const expressSession = require("express-session");
 
 app.use(expressSession({
@@ -32,7 +32,7 @@ const PageRouter = require('./routes/PageRouter');
 
 //db
 db.sequelize
-  .sync({})
+  .sync({}) //force:true in sync drops all data in d db
   .then(() => {
     app.listen(sqlPort, () => {
       console.log(
@@ -48,6 +48,8 @@ db.sequelize
 app.set("view engine", "ejs");
 // serve static files from public
 app.use(express.static('public'))
+app.use(logger("dev"));
+app.use(bodyParser.json());
 
 app.use("/images", PhotosRouter);
 app.use("/comments", CommentsRouter)
