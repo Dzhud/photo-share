@@ -34,8 +34,8 @@ PhotosRouter.route("/")
       .findAll()
       .then((photos) => {
         console.log("GET IMAGES");
-        response.send(photos);
-        //response.redirect('/');
+        //response.send(photos);
+        response.redirect('/');
       })
       .catch((error) => {
         response.send(error);
@@ -50,7 +50,8 @@ PhotosRouter.route("/")
       .create({ title: title, mediaLocation: mediaLocation })
       .then((photo) => {
         console.log("POST IMAGES");
-        response.send(photo);
+        //response.send(photo);
+        response.redirect("/");
       })
       .catch((error) => {
         response.send(error);

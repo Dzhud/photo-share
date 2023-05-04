@@ -4,7 +4,17 @@ const db = require("./models"); //this line
 const app = express();
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
+const expressSession = require("express-session");
 
+app.use(expressSession({
+    secret: 'Tayo Loves Kinsta'
+}))
+
+global.loggedIn = null;
+app.use("*", (request, response, next) => {
+  loggedIn = request.session.userId;
+  next();
+});
 
 // server
 const port = 8080;
@@ -13,11 +23,12 @@ app.listen(port, () => {
   console.log(`MariaDB connection Successful- http://localhost:${port}`);
 });
 
+//routes
 const PhotosRouter = require('./routes/PhotosRouter');
 const CommentsRouter = require('./routes/CommentsRouter');
 const UsersRouter = require('./routes/UsersRouter');
+const PageRouter = require('./routes/PageRouter');
 
-//routes
 
 //db
 db.sequelize
@@ -37,11 +48,8 @@ db.sequelize
 app.set("view engine", "ejs");
 // serve static files from public
 app.use(express.static('public'))
-// use res.render to load up an ejs template
-app.get("/", (req, res) => {
-  res.render("index");
-});
 
 app.use("/images", PhotosRouter);
 app.use("/comments", CommentsRouter)
 app.use("/users", UsersRouter)
+app.use("/", PageRouter)
